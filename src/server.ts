@@ -1,13 +1,11 @@
 import fastify from 'fastify'
-import { knex } from './database'
 import { env } from './env'
+import { transactions } from './routes/transactions'
 
 const app = fastify()
 
-app.get('/hello', async () => {
-  const transactions = await knex('transactions').select('*')
-
-  return transactions
+app.register(transactions, {
+  prefix: '/transactions',
 })
 
 app
