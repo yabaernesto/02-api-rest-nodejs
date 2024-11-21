@@ -10,7 +10,7 @@ export async function transactions(app: FastifyInstance) {
     {
       preHandler: [checkSessionIdExists],
     },
-    async (request, reply) => {
+    async (request) => {
       const sessionId = request.cookies.sessionId
 
       const transactions = await knex('transactions')
